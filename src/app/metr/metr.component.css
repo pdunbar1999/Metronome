@@ -1,0 +1,29 @@
+
+
+.content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.value {
+    font-size: 80px;
+}
+
+mat-slider {
+    width: 300px;
+    margin: 0px 15px;
+}
+
+.slider {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.playOrpause {
+    transform: scale(2);
+}
