@@ -9,7 +9,7 @@
     align-items: center;
   }
 
-.value {
+.BPMValue {
     font-size: 80px;
 }
 
@@ -24,6 +24,20 @@ mat-slider {
     margin-bottom: 30px;
 }
 
+.metrOptions {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+}
+
 .playOrpause {
     transform: scale(2);
+    
+}
+
+.firstBeatButton {
+    margin-left: auto; 
+    font-style: italic;
 }
