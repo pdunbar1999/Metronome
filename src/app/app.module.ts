@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
@@ -22,7 +23,8 @@ import { MetrComponent } from './metr/metr.component';
     MatSliderModule,
     FormsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -27,6 +27,7 @@ export class MetrComponent {
   audio1 = this.loadAudioFirstBeat();
   audio2 = this.loadAudioSubsequentBeat();
   subscription: Subscription;
+  stressFirstBeat = true;
 
 
   //Emits values from 0 to infinity at a given interval
@@ -95,8 +96,8 @@ export class MetrComponent {
   }
 
   playTicks(beatNumber){
-    //If it is the first beat
-    if((beatNumber+1)%4 == 1) {
+    //If it is the first beat and we want to stress it
+    if(((beatNumber+1)%4 == 1) && this.stressFirstBeat==true) {
 
       
       this.audio1.play()
