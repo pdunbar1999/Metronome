@@ -1,20 +1,10 @@
-
 .loginCard {
     display: flex;
-    margin: 15% auto 32px;
-    padding: 0 16px;
-    max-width: 400px;
     flex-direction: column;
-    align-items: center;
-};
-
-mat-card {
-    margin: 15% auto 32px;
+    margin: 13% auto;
+    min-width: 150px;
     max-width: 400px;
-    margin: 2em auto;
-    text-align: center;
-  }
-  
-  mat-form-field {
-    display: block;
-  }
+    align-items: center;
+    width: 100%;
+    
+};
