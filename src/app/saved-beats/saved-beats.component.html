@@ -1,1 +1,16 @@
-<p>saved-beats works!</p>
+<div>
+    <h1>My Saved Songs</h1>
+
+    <div *ngIf="selectedSong">
+        <h3>Currently Selected Song: {{selectedSong.name | uppercase}} </h3>
+    </div>
+
+    <ul>
+        <li *ngFor="let song of listOfSongs">
+            <button [class.selected]="song === selectedSong" type="button" (click)="onSelect(song)">
+                <span>{{song.name}}</span>
+                <span> {{song.BPM}}</span>
+            </button>
+        </li>
+    </ul>
+</div>

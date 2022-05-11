@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { Song } from '../models/Songs';
 
 @Component({
   selector: 'app-metr',
@@ -29,6 +30,12 @@ export class MetrComponent {
   subscription: Subscription;
   stressFirstBeat = true;
 
+
+  //Called when a song is selected from the child component saved-beats
+  songChangedHandler(song: Song) {
+    this.value = song.BPM;
+    this.stressFirstBeat = song.stressFirstBeat;
+  }
 
   //Emits values from 0 to infinity at a given interval
   timerObservable = interval(60000/this.value);
