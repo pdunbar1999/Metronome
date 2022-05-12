@@ -22,13 +22,19 @@ export class SavedBeatsComponent implements OnInit {
   }
 
   //What song the user selects from the list
-  selectedSong?: Song;
+  selectedSong = "None";
 
   //Selects a different song
   onSelect(song: Song): void {
-    this.selectedSong = song;
+    this.selectedSong = song.name;
     //Emits event to parent component to change the BPM
     this.songChanged.emit(song);
+  }
+
+  onEdit(song:Song): void {
+    console.log("it works");
+    //Create overlay here
+    //https://codinglatte.com/posts/angular/reusable-modal-overlay-using-angular-cdk-overlay/
   }
 
   //Empty list

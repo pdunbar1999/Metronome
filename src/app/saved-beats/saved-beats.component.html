@@ -1,16 +1,44 @@
-<div>
-    <h1>My Saved Songs</h1>
+<div class="content">
+    <h1 class="header">My Saved Songs</h1>
 
-    <div *ngIf="selectedSong">
-        <h3>Currently Selected Song: {{selectedSong.name | uppercase}} </h3>
-    </div>
+    <h3>Currently Selected Song: {{selectedSong | uppercase}} </h3>
+<!-- 
+    <mat-selection-list disableRipple="false" class="option" #songs [multiple]="false">
+        <mat-list-option class="test" *ngFor="let song of listOfSongs" (click)="onSelect(song)">
+            <mat-list-item>
+                <h3>{{song.name}}</h3>
+            </mat-list-item>
+           
+           
 
-    <ul>
-        <li *ngFor="let song of listOfSongs">
-            <button [class.selected]="song === selectedSong" type="button" (click)="onSelect(song)">
-                <span>{{song.name}}</span>
-                <span> {{song.BPM}}</span>
+
+        </mat-list-option>
+    </mat-selection-list> -->
+
+    <mat-nav-list class="option">
+        <a mat-list-item *ngFor="let song of listOfSongs" (click)="onSelect(song)" [disableRipple]="false">
+           
+            <h3 matLine>{{song.name}}</h3>
+            <button mat-icon-button (click)="onEdit(song)">
+                <mat-icon>edit</mat-icon>
             </button>
-        </li>
-    </ul>
+        </a>
+    </mat-nav-list>
+
+
 </div>
+<!-- 
+<mat-nav-list>
+	<a mat-list-item *ngFor="let item of items;" (click)="navigate(item)" [disableRipple]="true">
+		<mat-icon matListAvatar>person</mat-icon>
+
+		<h3 matLine> {{item.name}}</h3>
+		<p matLine>
+			{{item.details}}
+		</p>
+
+    <button mat-icon-button (click)="onEdit($event, item)">
+      <mat-icon>edit</mat-icon>
+    </button>
+	</a>
+</mat-nav-list> -->
