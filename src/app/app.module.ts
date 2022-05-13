@@ -15,6 +15,11 @@ import { MetrComponent } from './metr/metr.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SavedBeatsComponent } from './saved-beats/saved-beats.component';
+import {OverlayModule} from '@angular/cdk/overlay';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -22,7 +27,8 @@ import { SavedBeatsComponent } from './saved-beats/saved-beats.component';
     AppComponent,
     MetrComponent,
     LoginComponent,
-    SavedBeatsComponent
+    SavedBeatsComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,11 @@ import { SavedBeatsComponent } from './saved-beats/saved-beats.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatListModule
+    MatListModule,
+    OverlayModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

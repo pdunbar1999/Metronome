@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SongListService } from '../services/song-list.service';
 import { Song } from '../models/Songs';
 import { Output, EventEmitter } from '@angular/core';
+import {MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component'
 
 @Component({
   selector: 'app-saved-beats',
@@ -11,7 +13,7 @@ import { Output, EventEmitter } from '@angular/core';
 export class SavedBeatsComponent implements OnInit {
 
   //DI
-  constructor(private songListService: SongListService) { }
+  constructor(private songListService: SongListService, private dialog: MatDialog) { }
 
 
   //To send back to parent component
@@ -31,11 +33,17 @@ export class SavedBeatsComponent implements OnInit {
     this.songChanged.emit(song);
   }
 
-  onEdit(song:Song): void {
-    console.log("it works");
-    //Create overlay here
-    //https://codinglatte.com/posts/angular/reusable-modal-overlay-using-angular-cdk-overlay/
-  }
+  //When user clicks the edit button
+  openDialog(song:Song) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = song;
+
+    this.dialog.open(DialogComponent, dialogConfig);
+}
 
   //Empty list
   listOfSongs: Song[] = []

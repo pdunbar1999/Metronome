@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Add/Edit Song</h2>
+
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Beats per Minute" formControlName="BPM">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Stress First Beat" formControlName="stressFirstBeat">
+
+            <mat-option value=True>
+                True</mat-option>
+            <mat-option value=False>
+                False</mat-option>
+                
+        </mat-select>
+
+    </mat-form-field>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+    
+
+    <button class="mat-raised-button mat-primary"
+            (click)="save()">
+        Save
+    </button>
+
+</mat-dialog-actions>
