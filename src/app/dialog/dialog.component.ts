@@ -12,8 +12,8 @@ import { Song } from '../models/Songs';
 export class DialogComponent implements OnInit {
 
   form: FormGroup;
-  name: string;
-
+  //Need to load the stressFirstBeat into a string to autopopulate the value in the form
+  firstBeatString: string;
 
   constructor(
     private fb: FormBuilder,
@@ -21,10 +21,21 @@ export class DialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) { id, name,
       BPM, stressFirstBeat }: Song) {
 
+
+    if (stressFirstBeat == true) {
+      this.firstBeatString = 'true'
+    }
+    else {
+      this.firstBeatString = 'false'
+    }
+
+
+    //This might not be safe with stressFirstBeat, since its not a boolean, its a string??
+    //Will see how the error works when adding a song and the default is null?
     this.form = fb.group({
-      name: [name, Validators.required],
-      BPM: [BPM, Validators.required],
-      stressFirstBeat: [stressFirstBeat, Validators.required]
+      name: [name, Validators.compose([Validators.required, Validators.maxLength(40)])],
+      BPM: [BPM, Validators.compose([Validators.required, Validators.min(1), Validators.max(200), Validators.pattern("^[0-9]*$")])],
+      stressFirstBeat: [this.firstBeatString, Validators.required]
     });
 
   }
@@ -32,13 +43,16 @@ export class DialogComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+   
 
   }
 
   save() {
-    this.dialogRef.close(this.form.value);
-    
+    if (this.form.valid) {
+      this.dialogRef.close(this.form.value);
+    }
+
+
   }
 
 
