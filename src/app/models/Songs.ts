@@ -9,7 +9,7 @@ export interface Song {
 export const listOfSongs: Song[] = [
     {
         id: 0,
-        name: "Hotel California",
+        name: "TESER",
         BPM: 80,
         stressFirstBeat: true
     },

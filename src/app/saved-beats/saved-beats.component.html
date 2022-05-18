@@ -1,11 +1,13 @@
 <div class="content">
     <h1 class="header">My Saved Songs</h1>
 
+    <button mat-raised-button color="primary" class="addSongButton" (click)="openDialog()">Add New Song</button>
+
     <h3>Currently Selected Song: {{selectedSong | uppercase}} </h3>
 
     <mat-nav-list class="option">
         <a mat-list-item *ngFor="let song of listOfSongs" (click)="onSelect(song)" [disableRipple]="false">
-           
+
             <h3 matLine>{{song.name}}</h3>
             <button mat-icon-button (click)="openDialog(song)">
                 <mat-icon>edit</mat-icon>
@@ -15,18 +17,3 @@
 
 
 </div>
-<!-- 
-<mat-nav-list>
-	<a mat-list-item *ngFor="let item of items;" (click)="navigate(item)" [disableRipple]="true">
-		<mat-icon matListAvatar>person</mat-icon>
-
-		<h3 matLine> {{item.name}}</h3>
-		<p matLine>
-			{{item.details}}
-		</p>
-
-    <button mat-icon-button (click)="onEdit($event, item)">
-      <mat-icon>edit</mat-icon>
-    </button>
-	</a>
-</mat-nav-list> -->

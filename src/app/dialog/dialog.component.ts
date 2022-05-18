@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Song } from '../models/Songs';
@@ -39,7 +39,6 @@ export class DialogComponent implements OnInit {
     });
 
   }
-
 
 
   ngOnInit(): void {

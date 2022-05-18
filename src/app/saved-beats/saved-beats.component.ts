@@ -34,24 +34,39 @@ export class SavedBeatsComponent implements OnInit {
   }
 
   //When user clicks the edit button
-  openDialog(song:Song) {
+  openDialog(song?: Song) {
 
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = true;
 
-    dialogConfig.data = song;
+    //If this is an edit 
+    if(song){
+      dialogConfig.data = song;
+    }
 
-    this.dialog.open(DialogComponent, dialogConfig);
+    
+    const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
+
+  //   dialogRef.afterClosed().subscribe(
+  //     data => this.songListService.addSong(data)
+  // );    
+  
 }
 
   //Empty list
   listOfSongs: Song[] = []
+
+  
+
+
 
 
   //Subscirbes to the observable
   getListOfSongs(): void {
     this.songListService.getSongList().subscribe(list => this.listOfSongs = list);
   }
+
+
 
 }

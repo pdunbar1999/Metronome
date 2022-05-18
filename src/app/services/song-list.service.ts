@@ -11,12 +11,14 @@ export class SongListService {
 
   
 
-  // listOfSongs: Song[]=[]
+  listOfSongs: Song[]=[]
   
 
-  // addSong(song: Song) {
-  //   this.listOfSongs.push(song);
-  // }
+  addSong(song: Song) {
+    // console.log(song);
+    this.listOfSongs.push(song);
+    console.log(listOfSongs);
+  }
 
   // removeSong(songID) {
   //   this.listOfSongs.filter(id => {

@@ -9,9 +9,22 @@
     max-width: 960px;
     flex-direction: column;
     align-items: center;
-  }
+}
 
-  .header {
-      text-align: center;
-  }
+.header {
+    text-align: center;
+}
 
+
+.addSongButton {
+    width: 40% !important;
+    font-size: 1.5rem;
+}
+
+.mat-list-item:nth-child(even) {
+    background-color: rgba(0, 0, 200, 0.025);
+}
+
+.mat-list-item:nth-child(odd) {
+    background-color: rgba(0, 0, 244, 0.1);
+}
