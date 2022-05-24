@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Song } from '../models/Songs';
@@ -49,6 +50,10 @@ export class MetrComponent {
   ngOnInit(): void {
     
   }
+
+  //TODO:
+  //Add a check to see if slider changed, buttons pressed, or streessfirstbeatchanged
+  // when a song is already selected. Need to deselect the current song if that happens
 
   //This is mostly to check for the slider changes
   ngDoCheck(): void {

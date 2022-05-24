@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Add Song</h2>
+
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name">
+        <mat-error *ngIf="form.controls['name'].errors?.required">
+            Name is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls['name'].errors?.maxlength">
+            Max length of <strong>40</strong> characters
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Beats per Minute (BPM)" formControlName="BPM">
+        <mat-error *ngIf="form.controls['BPM'].errors?.required">
+            BPM is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls['BPM'].errors?.min || form.controls['BPM'].errors?.max">
+            BPM must be between <strong>1</strong> and <strong>200</strong>
+        </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Stress First Beat" formControlName="stressFirstBeat">
+            <mat-option value="true">True</mat-option>
+            <mat-option value="false">False</mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="form.controls['stressFirstBeat'].errors?.required">
+            Stress First Beat option is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+
+
+    <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="save()">
+        Add Song
+    </button>
+
+</mat-dialog-actions>

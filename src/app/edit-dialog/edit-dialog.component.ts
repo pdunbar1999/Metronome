@@ -3,13 +3,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Song } from '../models/Songs';
 
-
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  selector: 'app-edit-dialog',
+  templateUrl: './edit-dialog.component.html',
+  styleUrls: ['./edit-dialog.component.css']
 })
-export class DialogComponent implements OnInit {
+export class EditDialogComponent implements OnInit {
 
   form: FormGroup;
   //Need to load the stressFirstBeat into a string to autopopulate the value in the form
@@ -17,22 +16,26 @@ export class DialogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) { id, name,
-      BPM, stressFirstBeat }: Song) {
+    private dialogRef: MatDialogRef<EditDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) data) {
 
+    var id = data.id;
+    var name = data.name;
+    var BPM = data.BPM;
+    var stressFirstBeat = data.stressFirstBeat;
 
     if (stressFirstBeat == true) {
       this.firstBeatString = 'true'
     }
-    else {
+    else if (stressFirstBeat == false) {
       this.firstBeatString = 'false'
     }
 
 
-    //This might not be safe with stressFirstBeat, since its not a boolean, its a string??
-    //Will see how the error works when adding a song and the default is null?
+    // //This might not be safe with stressFirstBeat, since its not a boolean, its a string??
+    // //Will see how the error works when adding a song and the default is null?
     this.form = fb.group({
+      id: [id],
       name: [name, Validators.compose([Validators.required, Validators.maxLength(40)])],
       BPM: [BPM, Validators.compose([Validators.required, Validators.min(1), Validators.max(200), Validators.pattern("^[0-9]*$")])],
       stressFirstBeat: [this.firstBeatString, Validators.required]
@@ -42,7 +45,7 @@ export class DialogComponent implements OnInit {
 
 
   ngOnInit(): void {
-   
+
 
   }
 
@@ -51,12 +54,5 @@ export class DialogComponent implements OnInit {
       this.dialogRef.close(this.form.value);
     }
 
-
   }
-
-
-
-
-
 }
-

@@ -1,7 +1,7 @@
 <div class="content">
     <h1 class="header">My Saved Songs</h1>
 
-    <button mat-raised-button color="primary" class="addSongButton" (click)="openDialog()">Add New Song</button>
+    <button mat-raised-button color="primary" class="addSongButton" (click)="addDialog()">Add New Song</button>
 
     <h3>Currently Selected Song: {{selectedSong | uppercase}} </h3>
 
@@ -9,8 +9,11 @@
         <a mat-list-item *ngFor="let song of listOfSongs" (click)="onSelect(song)" [disableRipple]="false">
 
             <h3 matLine>{{song.name}}</h3>
-            <button mat-icon-button (click)="openDialog(song)">
+            <button mat-icon-button (click)="editDialog(song)">
                 <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteSong(song)">
+                <mat-icon>delete</mat-icon>
             </button>
         </a>
     </mat-nav-list>

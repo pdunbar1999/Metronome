@@ -16,10 +16,11 @@ import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SavedBeatsComponent } from './saved-beats/saved-beats.component';
 import {OverlayModule} from '@angular/cdk/overlay';
-import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { AddDialogComponent } from './add-dialog/add-dialog.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MatSelectModule } from '@angular/material/select';
     MetrComponent,
     LoginComponent,
     SavedBeatsComponent,
-    DialogComponent
+    EditDialogComponent,
+    AddDialogComponent
   ],
   imports: [
     BrowserModule,
