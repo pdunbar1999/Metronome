@@ -14,13 +14,13 @@ export class SongListService {
 
   listOfSongs: Song[] = [
     {
-      id: 1,
+      id: '1',
       name: "TESER",
       BPM: 80,
       stressFirstBeat: true
     },
     {
-      id: 2,
+      id: '2',
       name: "Way I talk",
       BPM: 100,
       stressFirstBeat: false
@@ -44,12 +44,14 @@ export class SongListService {
 
   }
 
-  deleteSong(songID) {
-    this.listOfSongs.filter(id => {
-      if (id != songID) {
-        return id;
-      }
+  deleteSong(data) {
+
+    //Find index where song to delete is
+    var index = this.listOfSongs.findIndex(function (song) {
+      return song.id === data.id;
     })
+    //Replace song by splicing 
+    if (index !== -1) this.listOfSongs.splice(index, 1);
   }
 
   getSongList(): Observable<Song[]> {

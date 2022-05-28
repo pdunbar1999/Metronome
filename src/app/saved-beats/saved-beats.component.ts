@@ -56,7 +56,7 @@ export class SavedBeatsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(
       data => {
-        //If the user clicked the backdropped, don't edit the song
+        //If the user escaped the dialog by clicking the backdropped, don't edit the song
         //This is done by checking if the data is undefined
         if(data !== undefined){
           var editedSong = this.createSongObject(data)
@@ -96,14 +96,15 @@ export class SavedBeatsComponent implements OnInit {
   createSongObject(data) {
     var newSong = <Song>{};
     //If were adding a new song, then there is no id.
-    if(data.id !== undefined) {
+    if(data.id == undefined) {
       newSong.id = uuid.v4();
     }
     //If were editing a song, there is already an id attatched to it.
     else {
       newSong.id = data.id;
+      
     }
-    newSong.id = data.id;
+    
     newSong.name = data.name;
     newSong.BPM = data.BPM;
     if (data.stressFirstBeat == 'true') {
@@ -117,8 +118,7 @@ export class SavedBeatsComponent implements OnInit {
   }
 
   deleteSong(data){
-    this.createSongObject
-    this.songListService.deleteSong(data.id);
+    this.songListService.deleteSong(data);
   }
 
 
