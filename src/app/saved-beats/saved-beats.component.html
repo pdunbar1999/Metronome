@@ -8,7 +8,7 @@
     <mat-nav-list class="option">
         <a mat-list-item *ngFor="let song of listOfSongs" (click)="onSelect(song)" [disableRipple]="false">
 
-            <h3 matLine>{{song.name}}</h3>
+            <h3 matLine>{{song.title}}</h3>
             <button mat-icon-button (click)="editDialog(song)">
                 <mat-icon>edit</mat-icon>
             </button>

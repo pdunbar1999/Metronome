@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SongListService } from '../services/song-list.service';
 import { Song } from '../models/Songs';
-import { Output, EventEmitter } from '@angular/core';
+import { Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component'
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
 import * as uuid from 'uuid';
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-saved-beats',
@@ -23,19 +25,21 @@ export class SavedBeatsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListOfSongs();
+    
   }
 
   //Empty list
-  listOfSongs: Song[] = []
+  listOfSongs: Song[]
 
   //What song the user selects from the list
-  selectedSong = "None";
+  @Input() selectedSong : String;
 
   //Selects a different song
   onSelect(song: Song): void {
-    this.selectedSong = song.name;
-    //Emits event to parent component to change the BPM
+    this.selectedSong = song.title;
+    //Emits event to parent component to change the data
     this.songChanged.emit(song);
+    
   }
 
   //When user clicks the add or edit button
@@ -59,8 +63,12 @@ export class SavedBeatsComponent implements OnInit {
         //If the user escaped the dialog by clicking the backdropped, don't edit the song
         //This is done by checking if the data is undefined
         if(data !== undefined){
+
+          
           var editedSong = this.createSongObject(data)
-          this.songListService.editSong(editedSong)
+          console.log(editedSong);
+          this.songListService.editSong(editedSong).subscribe(updatedSongList => this.listOfSongs = updatedSongList);
+          console.log(this.listOfSongs);
           this.onSelect(editedSong);
         }
       }
@@ -81,7 +89,8 @@ export class SavedBeatsComponent implements OnInit {
         //This is done by checking if the data is undefined
         if(data !== undefined){
           var newSong = this.createSongObject(data)
-          this.songListService.addSong(newSong)
+          this.songListService.addSong(newSong).subscribe(song => this.listOfSongs.push(song));
+
           //Select the newSong on the metronome
           this.onSelect(newSong);
         }
@@ -95,18 +104,11 @@ export class SavedBeatsComponent implements OnInit {
   //Creating new object of song and filling in with the data passed
   createSongObject(data) {
     var newSong = <Song>{};
-    //If were adding a new song, then there is no id.
-    if(data.id == undefined) {
-      newSong.id = uuid.v4();
-    }
-    //If were editing a song, there is already an id attatched to it.
-    else {
-      newSong.id = data.id;
-      
-    }
     
-    newSong.name = data.name;
-    newSong.BPM = data.BPM;
+    newSong.title = data.title;
+    newSong.bpm = data.bpm;
+    newSong.id = data.id;
+
     if (data.stressFirstBeat == 'true') {
       newSong.stressFirstBeat = true;
     }
@@ -118,10 +120,9 @@ export class SavedBeatsComponent implements OnInit {
   }
 
   deleteSong(data){
-    this.songListService.deleteSong(data);
+    this.songListService.deleteSong(data.id).subscribe(updatedSongList => this.listOfSongs = updatedSongList);
+    
   }
-
-
 
 
 
@@ -129,8 +130,11 @@ export class SavedBeatsComponent implements OnInit {
 
   //Subscirbes to the observable
   getListOfSongs(): void {
+    // this.songListService.getSongList().subscribe(list => this.listOfSongs = list);
     this.songListService.getSongList().subscribe(list => this.listOfSongs = list);
+
   }
+
 
 
 

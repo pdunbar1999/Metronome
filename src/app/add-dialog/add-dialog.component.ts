@@ -17,8 +17,8 @@ export class AddDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<AddDialogComponent>) {
 
     this.form = fb.group({
-      name: ['',Validators.compose([Validators.required, Validators.maxLength(40)])],
-      BPM: ['',Validators.compose([Validators.required, Validators.min(1), Validators.max(200), Validators.pattern("^[0-9]*$")])],
+      title: ['',Validators.compose([Validators.required, Validators.maxLength(40)])],
+      bpm: ['',Validators.compose([Validators.required, Validators.min(1), Validators.max(200), Validators.pattern("^[0-9]*$")])],
       stressFirstBeat: ['',Validators.required]
     });
   };

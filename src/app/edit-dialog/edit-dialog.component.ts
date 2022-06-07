@@ -20,8 +20,8 @@ export class EditDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data) {
 
     var id = data.id;
-    var name = data.name;
-    var BPM = data.BPM;
+    var title = data.title;
+    var bpm = data.bpm;
     var stressFirstBeat = data.stressFirstBeat;
 
     if (stressFirstBeat == true) {
@@ -36,8 +36,8 @@ export class EditDialogComponent implements OnInit {
     // //Will see how the error works when adding a song and the default is null?
     this.form = fb.group({
       id: [id],
-      name: [name, Validators.compose([Validators.required, Validators.maxLength(40)])],
-      BPM: [BPM, Validators.compose([Validators.required, Validators.min(1), Validators.max(200), Validators.pattern("^[0-9]*$")])],
+      title: [title, Validators.compose([Validators.required, Validators.maxLength(40)])],
+      bpm: [bpm, Validators.compose([Validators.required, Validators.min(1), Validators.max(200), Validators.pattern("^[0-9]*$")])],
       stressFirstBeat: [this.firstBeatString, Validators.required]
     });
 

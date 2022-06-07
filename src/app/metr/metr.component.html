@@ -33,7 +33,7 @@
     </div>
 
     
-    <app-saved-beats (songChanged)="songChangedHandler($event)"></app-saved-beats>
+    <app-saved-beats [selectedSong]="selectedSong" (songChanged)="songChangedHandler($event)"></app-saved-beats>
 </div>
 
 
