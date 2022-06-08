@@ -21,6 +21,7 @@ export class SavedBeatsComponent implements OnInit {
 
 
   //To send back to parent component
+  //This is fired when we click a new song, add a new song, or a edit a song.
   @Output() songChanged: EventEmitter<Song> = new EventEmitter()
 
   ngOnInit(): void {
@@ -32,7 +33,8 @@ export class SavedBeatsComponent implements OnInit {
   listOfSongs: Song[]
 
   //What song the user selects from the list
-  @Input() selectedSong : String;
+   
+  selectedSong = "None";
 
   //Selects a different song
   onSelect(song: Song): void {
@@ -66,9 +68,7 @@ export class SavedBeatsComponent implements OnInit {
 
           
           var editedSong = this.createSongObject(data)
-          console.log(editedSong);
           this.songListService.editSong(editedSong).subscribe(updatedSongList => this.listOfSongs = updatedSongList);
-          console.log(this.listOfSongs);
           this.onSelect(editedSong);
         }
       }
@@ -119,7 +119,15 @@ export class SavedBeatsComponent implements OnInit {
     return newSong;
   }
 
-  deleteSong(data){
+  deleteSong(event, data){
+    //This stops from the onSelect function in the HTML parent container from firing.
+    event.stopPropagation();
+
+    //If your deleting the song you currently have selected, change the currently selected song to None    
+    if(data.title == this.selectedSong) {
+      this.selectedSong = "None";
+
+    }
     this.songListService.deleteSong(data.id).subscribe(updatedSongList => this.listOfSongs = updatedSongList);
     
   }
