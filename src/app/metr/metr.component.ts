@@ -29,13 +29,14 @@ export class MetrComponent {
 
 
   BPM = 100;
-  value = 100;
-  placeholder = 100;
+  // value = 100;
+  // placeholder = 100;
   isPlaying = false;
   audio1 = this.loadAudioFirstBeat();
   audio2 = this.loadAudioSubsequentBeat();
   subscription: Subscription;
   stressFirstBeat = true;
+  currentSelectedSongPlaceholder = "None";
 
   
   @ViewChild(SavedBeatsComponent) SavedBeatsComponent! : SavedBeatsComponent;
@@ -43,13 +44,13 @@ export class MetrComponent {
 
   //Called when a song is selected from the child component saved-beats
   songChangedHandler(song: Song) {
-    this.value = song.bpm;
+    this.BPM = song.bpm;
     this.stressFirstBeat = song.stressFirstBeat;
-    
+    this.updateBPMAndTitleBooleanAndRestartMetronome(true);
   }
 
   //Emits values from 0 to infinity at a given interval
-  timerObservable = interval(60000/this.value);
+  timerObservable = interval(60000/this.BPM);
 
   //What is called when you subscribe
   myObserver = {
@@ -61,65 +62,81 @@ export class MetrComponent {
     
   }
 
-  //TODO:
-  //Add a check to see if slider changed, buttons pressed, or streessfirstbeatchanged
-  // when a song is already selected. Need to deselect the current song if that happens
-
-  //This is mostly to check for the slider changes
-  ngDoCheck(): void {
-
-    //Checks if value has changed by hitting the buttons or slider
-    //Have to use this way for the slider
-    if(this.value != this.placeholder){
-      console.log(this.value);
-      console.log(this.placeholder);
-      this.timerObservable = interval(60000/this.value);
-
-
-      console.log("whend o you fure");
-      //If a song has been selected, deselect it since it edited the metronome 
-      // this.SavedBeatsComponent.selectedSong = "None";
-
-      //If BPM changes while it is still playing
-       if(this.isPlaying == true) {
-
-        //Stop the current metronome by unsubsribing to the Observable that holds the interval
-        this.subscription && this.subscription.unsubscribe();
-
-        //Restart and subscribe to the observable with the new interval
-        this.subscription = this.timerObservable.subscribe(this.myObserver); 
-       }
-  
-    }
-    //Change placeholder to be able to check if it changes again
-    this.placeholder = this.value
-  }
-
-  
-  //Add one BPM
-  AddOne() {
-    if(this.value < 200){
-      this.value = this.value + 1;
-    }
+  //Checks for changes in the slider, event.value represents the slider value
+  onSliderChange(event) {
+    this.BPM = event.value;
+    this.updateBPMAndTitleBooleanAndRestartMetronome(false);
     
   }
 
-  //Subtract one BPM
+  //Function that fires when BPM is changed by slider or buttons
+  //Changes the currently selected songed to none if a song is currently selected
+  //Updates the BPM and restarts the metronome automatically
+  updateBPMAndTitleBooleanAndRestartMetronome(songChanged) {
+
+    console.log(this.SavedBeatsComponent.selectedSong);
+    //Resets the observable to the new BPM value
+    this.timerObservable = interval(60000/this.BPM);
+    
+
+    //If BPM changes while the metronome is currently playing
+    if(this.isPlaying == true) {
+
+      //Stop the current metronome by unsubsribing to the Observable that holds the interval
+      this.subscription && this.subscription.unsubscribe();
+
+      //Restart and subscribe to the observable with the new interval
+      this.subscription = this.timerObservable.subscribe(this.myObserver); 
+     }
+
+    //This means that it was a button or slider change, so just make the currently selected song to None
+    if(songChanged==false) {
+      this.SavedBeatsComponent.selectedSong = "None";
+    }
+
+  }
+
+
+  
+  //Add one BPM and update
+  AddOne() {
+    if(this.BPM < 200){
+      this.BPM = this.BPM + 1;
+      //false means that we aren't selecting a new song
+      this.updateBPMAndTitleBooleanAndRestartMetronome(false);
+    }
+    
+    
+  }
+
+  //Subtract one BPM and update
   SubtractOne() {
-    if(this.value > 1){
-      this.value = this.value - 1;
+    if(this.BPM > 1){
+      this.BPM = this.BPM - 1;
+      //false means that we aren't selecting a new song
+      this.updateBPMAndTitleBooleanAndRestartMetronome(false);
     }
   
   }
 
+  //Starts and stops the metronome
   PlayBack(){
+    
+    //If play button was clicked
     if(this.isPlaying == false){
+      //Update the isPLaying value
       this.isPlaying = !this.isPlaying;
+
+      //Subscribe to the observable meteronome interval
       this.subscription = this.timerObservable.subscribe(this.myObserver); 
 
     }
+    //If the pause button was clicked
     else{
+      //Update the isPlaying value
       this.isPlaying = !this.isPlaying;
+
+      //Unsubscribe to the observable meteronome interval
       this.subscription && this.subscription.unsubscribe();
     }
   }
@@ -127,8 +144,6 @@ export class MetrComponent {
   playTicks(beatNumber){
     //If it is the first beat and we want to stress it
     if(((beatNumber+1)%4 == 1) && this.stressFirstBeat==true) {
-
-      
       this.audio1.play()
     }
     else {
@@ -136,9 +151,6 @@ export class MetrComponent {
     }
   }
   
-
-  
-
   loadAudioFirstBeat() {
     let audio = new Audio()
     audio.src = "../../assets/Sounds/1.wav"
