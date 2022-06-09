@@ -27,6 +27,7 @@ export class SavedBeatsComponent implements OnInit {
   ngOnInit(): void {
     this.getListOfSongs();
     
+    
   }
 
   //Empty list
