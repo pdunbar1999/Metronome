@@ -33,9 +33,9 @@
     </div>
 
     
-
-
-    
+    <!-- <app-saved-beats [selectedSong]="selectedSong" (songChanged)="songChangedHandler($event)"></app-saved-beats> -->
+    <!-- <app-saved-beats [events]="emitbpmChangedBySliderOrButtons.asObservable()" (songChanged)="songChangedHandler($event)"></app-saved-beats> -->
+    <app-saved-beats (songChanged)="songChangedHandler($event)"></app-saved-beats>
 </div>
 
 

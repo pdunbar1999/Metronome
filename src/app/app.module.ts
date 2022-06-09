@@ -7,7 +7,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-
+import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +15,13 @@ import { MetrComponent } from './metr/metr.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SavedBeatsComponent } from './saved-beats/saved-beats.component';
+import {OverlayModule} from '@angular/cdk/overlay';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { AddDialogComponent } from './add-dialog/add-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,7 +29,9 @@ import { SavedBeatsComponent } from './saved-beats/saved-beats.component';
     AppComponent,
     MetrComponent,
     LoginComponent,
-    SavedBeatsComponent
+    SavedBeatsComponent,
+    EditDialogComponent,
+    AddDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +45,13 @@ import { SavedBeatsComponent } from './saved-beats/saved-beats.component';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatListModule,
+    OverlayModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

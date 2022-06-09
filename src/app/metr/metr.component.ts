@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { Song } from '../models/Songs';
+import { SavedBeatsComponent } from '../saved-beats/saved-beats.component';
 
 @Component({
   selector: 'app-metr',
@@ -21,6 +24,11 @@ export class MetrComponent {
     
   }
 
+
+  //We use value to measure bpm, but it shouldnt, should be totally seperate since we need it for local variable changes in buttons and slider
+
+
+  BPM = 100;
   value = 100;
   placeholder = 100;
   isPlaying = false;
@@ -29,6 +37,16 @@ export class MetrComponent {
   subscription: Subscription;
   stressFirstBeat = true;
 
+  
+  @ViewChild(SavedBeatsComponent) SavedBeatsComponent! : SavedBeatsComponent;
+
+
+  //Called when a song is selected from the child component saved-beats
+  songChangedHandler(song: Song) {
+    this.value = song.bpm;
+    this.stressFirstBeat = song.stressFirstBeat;
+    
+  }
 
   //Emits values from 0 to infinity at a given interval
   timerObservable = interval(60000/this.value);
@@ -43,13 +61,24 @@ export class MetrComponent {
     
   }
 
+  //TODO:
+  //Add a check to see if slider changed, buttons pressed, or streessfirstbeatchanged
+  // when a song is already selected. Need to deselect the current song if that happens
+
   //This is mostly to check for the slider changes
   ngDoCheck(): void {
 
     //Checks if value has changed by hitting the buttons or slider
     //Have to use this way for the slider
     if(this.value != this.placeholder){
+      console.log(this.value);
+      console.log(this.placeholder);
       this.timerObservable = interval(60000/this.value);
+
+
+      console.log("whend o you fure");
+      //If a song has been selected, deselect it since it edited the metronome 
+      // this.SavedBeatsComponent.selectedSong = "None";
 
       //If BPM changes while it is still playing
        if(this.isPlaying == true) {
