@@ -5,28 +5,28 @@
 
     <div class="slider">
 
-        <button mat-mini-fab color="warn" aria-label="Subtract 1" (click)="SubtractOne()">
+        <button mat-mini-fab color="primary" aria-label="Subtract 1" (click)="SubtractOne()">
             <mat-icon>exposure_neg_1</mat-icon>
         </button>
 
-        <mat-slider min="1" max="200" step="1" [(ngModel)]="BPM" (input)="onSliderChange($event)"></mat-slider>
+        <mat-slider color="primary" min="1" max="200" step="1" [(ngModel)]="BPM" (input)="onSliderChange($event)"></mat-slider>
 
-        <button mat-mini-fab color="warn" aria-label="Add 1" (click)="AddOne()">
+        <button mat-mini-fab color="primary" aria-label="Add 1" (click)="AddOne()">
             <mat-icon>exposure_plus_1</mat-icon>
         </button>
 
     </div>
 
     <div class="metrOptions">
-        <button *ngIf="isPlaying == false" mat-fab color="warn" aria-label="Start Metronome" (click)="PlayBack()">
+        <button *ngIf="isPlaying == false" mat-fab color="primary" aria-label="Start Metronome" (click)="PlayBack()">
             <mat-icon class="playOrpause">play_circle_outline</mat-icon>
         </button>
     
-        <button *ngIf="isPlaying == true" mat-fab color="warn" aria-label="Start Metronome" (click)="PlayBack()">
+        <button *ngIf="isPlaying == true" mat-fab color="primary" aria-label="Start Metronome" (click)="PlayBack()">
             <mat-icon class="playOrpause">pause_circle_outline</mat-icon>
         </button>
 
-        <mat-checkbox class="firstBeatButton" [(ngModel)]="stressFirstBeat">
+        <mat-checkbox color="primary" class="firstBeatButton" [(ngModel)]="stressFirstBeat">
             Stress First Beat
         </mat-checkbox>
 

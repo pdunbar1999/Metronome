@@ -22,7 +22,7 @@
 }
 
 .mat-list-item:nth-child(even) {
-    background-color: rgba(0, 0, 200, 0.025);
+    background-color: var(--color-accent);
 }
 
 .mat-list-item:nth-child(odd) {

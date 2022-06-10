@@ -3,6 +3,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Song } from '../models/Songs';
 import { SavedBeatsComponent } from '../saved-beats/saved-beats.component';
+import {Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-metr',
