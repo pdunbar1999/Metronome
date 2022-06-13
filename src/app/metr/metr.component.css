@@ -1,21 +1,47 @@
 
 
+@media only screen and (max-height: 400px) {
+
+    .content {
+        display: flex;
+        margin: 60px auto 5% !important;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+
+    .BPMValue {
+        font-size: 50px !important;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .metrOptions {
+        width: 300px !important;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: center;
+    }
+}
+
 .content {
     display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
+    margin: 15px auto 5%;
     flex-direction: column;
     align-items: center;
   }
 
 .BPMValue {
-    font-size: 80px;
+    font-size: 12.5vh;
 }
 
 mat-slider {
-    width: 300px;
-    margin: 0px 15px;
+    width: 40vw;
+    margin: 0px 10px;
 }
 
 .slider {
@@ -25,7 +51,7 @@ mat-slider {
 }
 
 .metrOptions {
-    width: 300px;
+    width: 500px;
     display: flex;
     flex-direction: row;
     align-items: baseline;
