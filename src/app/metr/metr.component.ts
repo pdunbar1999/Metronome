@@ -12,15 +12,6 @@ import {Breakpoints, BreakpointObserver} from '@angular/cdk/layout';
 })
 export class MetrComponent implements OnInit {
 
-
-  //NEXT UP
-  //Stress first beat feature
-  //Save specific beats and add titles
-    //Add users to and backend functionality to that?
-  //Add 3/4 and other types
-  //Improve UI on the toolbar
-  //Improve UI in general
-
   constructor(private responsive: BreakpointObserver) { 
     
   }
