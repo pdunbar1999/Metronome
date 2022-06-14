@@ -67,10 +67,16 @@
 
   .toolbar #login {
     margin: 0 16px;
-    /* margin-left: auto; */
     font-size: 1rem;
     color: whitesmoke;
+
   }
+
+  .mat-icon {
+    /* Not sure why it needs to be bottom, but it aligns correctly with Login text with it */
+    vertical-align: bottom;
+  }
+
 
   @media (min-width: 320px) {
     .toolbar #login {
@@ -134,15 +140,18 @@ to pull themselves to the outside, but then get the title right in the center.  
     </a>
 
   </nav>
-  
+
   <nav>
     <a routerLink="/">
       <h1>MetroNomies</h1>
     </a>
   </nav>
 
+
+
   <nav>
     <a routerLink="/login" id="login">
+      <mat-icon>perm_identity</mat-icon>
       Login
     </a>
   </nav>
