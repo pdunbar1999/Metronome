@@ -1,5 +1,17 @@
 .option {
-    width: 500px;
+    width: 18rem;
+}
+
+@media (min-width: 320px) {
+    .option {
+        width: calc(18rem + 12vw);
+    }
+}
+
+@media (min-width: 1500px) {
+    .option {
+        width: 30rem;
+    }
 }
 
 .content {
@@ -15,9 +27,8 @@
     text-align: center;
 }
 
-
 .addSongButton {
-    width: 40% !important;
+    width: 200px;
     font-size: 1.5rem;
 }
 
@@ -26,5 +37,9 @@
 }
 
 .mat-list-item:nth-child(odd) {
-    background-color: rgba(0, 0, 244, 0.1);
+    background-color: var(--color-accent);
+}
+
+.mat-list-item{
+    border: .1rem solid;
 }
