@@ -17,75 +17,44 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0px;
-  } */
-
-  /* p {
-    margin: 0;
-  } */
-
-
-
-  .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 65px;
-    display: flex;
-    align-items: center;
-    background-color: var(--color-primary);
-    color: white;
-    font-weight: 600;
-    justify-content: space-between;
+  .mat-icon {
+    /* Not sure why it needs to be this, but it aligns correctly with Login text with it */
+    vertical-align:text-top;
   }
 
-
-  .toolbar img {
+  img {
     margin: 0 16px;
     width: 2rem;
+    vertical-align: sub;
   }
 
   @media (min-width: 320px) {
-    .toolbar img {
+    img {
       width: calc(2rem + 1vw);
     }
   }
 
   @media (min-width: 1500px) {
-    .toolbar img {
+    img {
       width: 3rem;
     }
   }
 
-  .toolbar #login {
+  #login {
     margin: 0 16px;
     font-size: 1rem;
     color: whitesmoke;
 
   }
 
-  .mat-icon {
-    /* Not sure why it needs to be bottom, but it aligns correctly with Login text with it */
-    vertical-align: bottom;
-  }
-
-
   @media (min-width: 320px) {
-    .toolbar #login {
+    #login {
       font-size: calc(1rem + .3vw);
     }
   }
 
   @media (min-width: 1500px) {
-    .toolbar #login {
+    #login {
       font-size: 1.4rem;
     }
   }
@@ -93,6 +62,8 @@
   h1 {
     font-size: 1.2rem;
     color: whitesmoke;
+    font-weight: 200;
+    /* justify-content: center; */
   }
 
   @media (min-width: 320px) {
@@ -114,6 +85,21 @@
   nav :hover {
     opacity: 0.8;
   }
+
+  .element1 {
+    text-align: left;
+    width: 100%;
+  }
+
+  .element2 {
+    text-align: center;
+    width: 100%;
+  }
+
+  .element3 {
+    text-align: right;
+    width: 100%;
+  }
 </style>
 
 <!-- 
@@ -125,7 +111,7 @@ to pull themselves to the outside, but then get the title right in the center.  
 
 
 <!-- Toolbar -->
-<div class="toolbar" role="banner">
+<!-- <div class="toolbar" role="banner">
 
   <nav>
     <a routerLink="/">
@@ -155,7 +141,52 @@ to pull themselves to the outside, but then get the title right in the center.  
       Login
     </a>
   </nav>
-</div>
+</div> -->
+
+
+<!-- <mat-toolbar class="no" color="primary">
+    <p >sf</p>
+    <p class="test">df </p>
+    <p>dsfkljjklhkljhljkhljhjhluhljhl</p>
+  </mat-toolbar> -->
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="element1">
+      <nav>
+        <a routerLink="/">
+          <img alt="Angular Logo" src="data:image/svg+xml;base64,
+            PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZp
+            ZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9
+            Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMX
+            oiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAx
+            NC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMT
+            gyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE
+            3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
+        </a>
+
+      </nav>
+    </span>
+    <span class="element2">
+      <nav>
+        <a routerLink="/">
+          <h1>MetroNomies</h1>
+        </a>
+      </nav>
+    </span>
+    <span class="element3">
+      <nav>
+        <a routerLink="/login" id="login">
+          <mat-icon>perm_identity</mat-icon>
+          Login
+        </a>
+      </nav>
+
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
 
 
 <router-outlet></router-outlet>
