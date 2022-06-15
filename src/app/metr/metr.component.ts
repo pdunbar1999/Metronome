@@ -3,26 +3,26 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Song } from '../models/Songs';
 import { SavedBeatsComponent } from '../saved-beats/saved-beats.component';
-import {Breakpoints} from '@angular/cdk/layout';
+import {Breakpoints, BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-metr',
   templateUrl: './metr.component.html',
   styleUrls: ['./metr.component.css']
 })
-export class MetrComponent {
+export class MetrComponent implements OnInit {
 
-
-  //NEXT UP
-  //Stress first beat feature
-  //Save specific beats and add titles
-    //Add users to and backend functionality to that?
-  //Add 3/4 and other types
-  //Improve UI on the toolbar
-  //Improve UI in general
-
-  constructor() { 
+  constructor(private responsive: BreakpointObserver) { 
     
+  }
+
+  ngOnInit() {
+    this.responsive.observe(Breakpoints.HandsetLandscape)
+    .subscribe(result => {
+      if(result.matches) {
+        console.log("matches handsetlandscape")
+      }
+    })
   }
 
 
@@ -58,10 +58,6 @@ export class MetrComponent {
     next: x => this.playTicks(x),
     error: err => console.error('Observer got an error: ' + err),
   };
-
-  ngOnInit(): void {
-    
-  }
 
   //Checks for changes in the slider, event.value represents the slider value
   onSliderChange(event) {

@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatMenuModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,8 +12,80 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$Metronome-primary: mat-palette($mat-red);
-$Metronome-accent: mat-palette($mat-blue, A200, A100, A400);
+$bv-brand: (
+    50 : #fde8e7,
+    100 : #f9c7c4,
+    200 : #f6a19d,
+    300 : #f27b76,
+    400 : #ef5f58,
+    500 : #ec433b,
+    600 : #ea3d35,
+    700 : #e7342d,
+    800 : #e42c26,
+    900 : #df1e19,
+    A100 : #ffffff,
+    A200 : #ffdede,
+    A400 : #ffacab,
+    A700 : #ff9391,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$bv-secondary: (
+    50 : #fbece9,
+    100 : #f5cfc7,
+    200 : #efafa2,
+    300 : #e88f7d,
+    400 : #e37761,
+    500 : #de5f45,
+    600 : #da573e,
+    700 : #d54d36,
+    800 : #d1432e,
+    900 : #c8321f,
+    A100 : #ffffff,
+    A200 : #ffd2cd,
+    A400 : #ffa49a,
+    A700 : #ff8d80,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+// $Metronome-primary: mat-palette($mat-red);
+// $Metronome-accent: mat-palette($mat-orange);
+
+$Metronome-primary: mat-palette($bv-brand);
+$Metronome-accent: mat-palette($bv-secondary);
+
 
 // The warn palette is optional (defaults to red).
 $Metronome-warn: mat-palette($mat-red);
